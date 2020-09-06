@@ -132,5 +132,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = '/static/'
+
 # sent password reset URL in console 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
