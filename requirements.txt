@@ -10,7 +10,8 @@ urllib3==1.25.8
 whitenoise==5.0.1
 
 # libpq-dev
-python-psycopg2
+# python-psycopg2
+django-on-heroku==1.0.1
 boto3==1.9.96
 botocore==1.12.96
 certifi==2018.10.15
