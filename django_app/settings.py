@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+import django_heroku
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
@@ -28,7 +29,7 @@ DEBUG = True
 # DEBUG = os.environ.get('DEBUG_VALUE')
 
 
-ALLOWED_HOSTS = ['botreedjangoapp.herokuapp.com']
+ALLOWED_HOSTS = ['botreedjangoapp.herokuapp.com','127.0.0.1']
 
 
 # Application definition
@@ -139,3 +140,5 @@ STATIC_URL = '/static/'
 
 # sent password reset URL in console 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+django_heroku.settings(locals())
