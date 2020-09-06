@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block container %}
+
+    <h1>students</h1>
+
+    <table class="table">
+        <thead class="thead-light">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Age</th>
+            <th>Semester</th>
+            <th>Gender</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for student in object_list %}
+            <tr>
+                <td>{{ student.name }}</td>
+                <td>{{ student.user_id.email }}</td>
+                <td>{{ student.age }}</td>
+                <td>{{ student.semester }}</td>
+                <td>{{ student.gender }}</td>
+                <td>
+                    
+                    <a  href="{% url 'student_detail'  student.enroll_num  %}">Details</a>
+                    
+                </td>
+                {% if student.user_id.id == user.id and user.is_authenticated or user.is_superuser %}
+                    <td>
+                        {% comment %} {% if student.user_id.id == user.id  and user.is_authenticated %} {% endcomment %}
+                        <a  href="{% url 'student_update'  student.enroll_num  %}">Update</a>
+                    </td>
+                    <td>
+                        <a  href="{% url 'student_delete'  student.enroll_num  %}">Delete</a>
+                    </td>
+                {% endif %}
+            </tr>
+            {% empty %} 
+            <p>No objects yet.</p> 
+
+            {% endfor %}
+
+        {% if is_paginated %}
+            {% include "pagination.html" %}
+        {% endif %}
+
+        </tbody>
+    </table>
+{% endblock %}
