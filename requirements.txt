@@ -8,6 +8,7 @@ sqlparse==0.3.1
 gunicorn==20.0.4
 urllib3==1.25.8
 whitenoise==5.0.1
+psycopg2-binary==2.8.5
 
 # libpq-dev
 # python-psycopg2
