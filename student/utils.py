@@ -8,12 +8,8 @@ def generate_groups_and_permission(model_name, instance_name, content_type):
     groups = current_module_variables[model_name + PERMISSION_GROUP_SUFFIX]
     for k, v in groups.items():
         try:
-            print("----------key---",k,"----------value---",v)
-            # group_name = instance_name+'-'+k
             group_name = instance_name+k
-            print("------group_name----------",group_name)
             group = Group.objects.create(name=group_name)
-            print("------GROUP___________",group)
             for permission in v:
                 permission_codename = instance_name+permission[0]
                 permission_name = instance_name+permission[1]

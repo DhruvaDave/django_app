@@ -1,11 +1,17 @@
 
-from django.db.models import Manager, Q, Sum, QuerySet
+from django.db.models import Manager, Q, Sum, QuerySet,Max, Avg, Count
 from datetime import datetime
 
 
 class StudentManager(Manager):
     def get_total_students(self):
         return self.all().count()
+
+    def get_avg_age_students(self):
+        return self.aggregate(Avg('age'))
+
+    def get_max_age_student(self):
+        return self.aggregate(Max('age'))
 
     def get_students_age_less_or_equal(self, age):
         return self.filter(age__lte=age)
