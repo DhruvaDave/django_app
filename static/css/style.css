@@ -1,0 +1,10 @@
+.circle-img{
+    width: 200px;
+    height: 200px;
+    background-color: black;
+    background-size: cover;
+    display: block;
+    border-radius: 100px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+}

@@ -51,6 +51,8 @@ class Student(models.Model):
     email = models.EmailField(max_length=254)
     media_choice = models.CharField(
         choices=MEDIA_CHOICES, null=True, max_length=100)
+    profile_pic = models.ImageField(max_length=255, null=True,blank=True)
+    password = models.CharField(max_length=128, null=True)
 
     student = models.Manager()
     objects = StudentManager()

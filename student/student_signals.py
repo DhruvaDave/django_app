@@ -29,6 +29,8 @@ def create_groups_for_project(sender, instance, **kwargs):
                     username=instance.name,
                     email=instance.email,
                 )
+                temp.set_password(instance.password)
+                temp.save()
             if not instance.user_id:
                 new_stu = Student.objects.filter(enroll_num=instance.enroll_num)
                 Student.objects.filter(

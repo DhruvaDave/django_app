@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
-import django_heroku
+# import django_heroku
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
@@ -22,14 +22,14 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = 'e^-ypvf&csay$1@2)cuxf&poupq8cj4b#zgmkc*$+f!b@jd2x&'
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY') or 'e^-ypvf&csay$1@2)cuxf&poupq8cj4b#zgmkc*$+f!b@jd2x&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-# DEBUG = os.environ.get('DEBUG_VALUE')
+DEBUG = True
+# DEBUG = (os.environ.get('SECRET_KEY') == 'True')
 
 
-ALLOWED_HOSTS = ['botreedjangoapp.herokuapp.com','127.0.0.1']
+ALLOWED_HOSTS = ['botreedjangoapp.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'student.apps.StudentConfig'
+    'student.apps.StudentConfig',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
@@ -57,7 +58,6 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'django_app.urls'
 
 # PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
-import os
 
 
 TEMPLATES = [
@@ -87,7 +87,7 @@ DATABASES = {
     #     'ENGINE': 'django.db.backends.sqlite3',
     #     'NAME': BASE_DIR / 'db.sqlite3',
     # }
-     'default': {
+    'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'django_app',
         'USER': 'postgres',
@@ -134,11 +134,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
 
-# sent password reset URL in console 
+MEDIA_URL = '/images/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
+
+# sent password reset URL in console
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
