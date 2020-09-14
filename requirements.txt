@@ -25,3 +25,4 @@ requests==2.19.1
 s3transfer==0.2.0
 six==1.12.0
 python-dev-tools
+rest_framework
