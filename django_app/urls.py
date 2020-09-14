@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from student.views import AboutusTemplate,  StudentListView, StudentDetailView, StudentCreateView, StudentUpdateView, StudentDeleteView
+from student.api_views import StudentList, StudentDetail
 from django.contrib.auth import views as auth_views
 from django.conf.urls.static import static
 from django.conf import settings
@@ -31,4 +32,8 @@ urlpatterns = [
     path('student/create', StudentCreateView.as_view(),name="student_create"),
     path('student/<int:pk>/update', StudentUpdateView.as_view(),name="student_update"),
     path('student/<int:pk>/delete', StudentDeleteView.as_view(),name="student_delete"),
+
+    path('studentapi/', StudentList.as_view(),name="studentapi-list"),
+    path('studentapi/<int:pk>/', StudentDetail.as_view(),name="studentapi-detail"),
+    # path('studentapi/<int:pk>/', views.SnippetDetail.as_view()),
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
