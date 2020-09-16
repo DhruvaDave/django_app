@@ -13,7 +13,7 @@ from django import forms
 from django.contrib.auth.models import User
 
 # Loal Django Apps
-from .models import Student
+from .models import Student, Hobby
 
 
 class AboutusTemplate(TemplateView):
@@ -32,7 +32,7 @@ class StudentForm(forms.ModelForm):
     class Meta:
         model = Student
         fields = ('name', 'email', 'password', 'age', 'semester',
-                  'enroll_num', 'gender', 'profile_pic')
+                  'enroll_num', 'gender','hobbies', 'class_teacher', 'profile_pic')
 
 
 class StudentListView(ListView):
@@ -40,10 +40,13 @@ class StudentListView(ListView):
     template_name = 'student_list.html'
     context_object_name = 'students'
     paginate_by = 5
+    # current_user = self.user
 
     def get_context_data(self, **kwargs):
         context = super(StudentListView, self).get_context_data(**kwargs)
         students = self.get_queryset()
+        # user_hobbies = set(current_user.hobbies)
+        # user_hobbies = Hobby.objects.all()
         page = self.request.GET.get('page')
         paginator = Paginator(students, self.paginate_by)
         try:
@@ -53,6 +56,7 @@ class StudentListView(ListView):
         except EmptyPage:
             students = paginator.page(paginator.num_pages)
         context['students'] = students
+        # context['user_hobbies'] = user_hobbies
         return context
 
 

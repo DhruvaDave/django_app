@@ -18,6 +18,18 @@ GENDER = (
     ('others', 'others'),
 )
 
+class Hobby(models.Model):
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+
+class Teacher(models.Model):
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+
 
 class Student(models.Model):
 
@@ -53,6 +65,8 @@ class Student(models.Model):
         choices=MEDIA_CHOICES, null=True, max_length=100)
     profile_pic = models.ImageField(max_length=255, null=True,blank=True)
     password = models.CharField(max_length=128, null=True)
+    hobbies = models.ManyToManyField(Hobby)
+    class_teacher = models.ForeignKey(Teacher,null=True,on_delete=models.CASCADE)
 
     student = models.Manager()
     objects = StudentManager()

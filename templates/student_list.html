@@ -12,6 +12,8 @@
             <th>Age</th>
             <th>Semester</th>
             <th>Gender</th>
+            <th>Hobbies</th>
+            <th>Class  Teacher</th>
             <th></th>
             <th></th>
             <th></th>
@@ -25,6 +27,12 @@
                 <td>{{ student.age }}</td>
                 <td>{{ student.semester }}</td>
                 <td>{{ student.gender }}</td>
+                <td>
+                {% for hobby in student.hobbies.all %}
+                {{ hobby }},
+                {% endfor %}
+                </td>
+                <td>{{ student.class_teacher }}</td>
                 <td>
                     
                     <a  href="{% url 'student_detail'  student.enroll_num  %}">Details</a>

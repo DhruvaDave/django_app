@@ -11,6 +11,7 @@ from django.contrib.auth.models import User
 
 @receiver(post_save, sender=Student)
 def create_groups_for_project(sender, instance, **kwargs):
+    print("------here-------create----")
     if kwargs['created']:
         try:
             temp = User.objects.filter(email=instance.email)

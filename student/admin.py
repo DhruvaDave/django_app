@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Student
+from .models import Student, Hobby, Teacher
 
 
 class StudentAdmin(admin.ModelAdmin):
@@ -16,3 +16,5 @@ class StudentAdmin(admin.ModelAdmin):
     #     return False
        
 admin.site.register(Student, StudentAdmin)
+admin.site.register(Hobby)
+admin.site.register(Teacher)
